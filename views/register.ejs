@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+        <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300">
+
+    <title>Furious 7</title>
+    <style type="text/css">
+        body {
+    background: url('../images/c1.jpg') no-repeat fixed center center;
+    background-size: cover;
+    font-family: Montserrat;
+}
+
+.logo {
+    width: 213px;
+    height: 36px;
+    /*background: url('http://i.imgur.com/fd8Lcso.png') no-repeat;*/
+    margin: 30px auto;
+}
+
+.login-block {
+    width: 320px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    border-top: 5px solid #ff656c;
+    margin: 0 auto;
+}
+
+.login-block h1 {
+    text-align: center;
+    color: #000;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.login-block input {
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: Montserrat;
+    padding: 0 20px 0 50px;
+    outline: none;
+}
+
+.login-block input#username {
+    background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px top no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input#username:focus {
+    background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px bottom no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input#password {
+    background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px top no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input#password:focus {
+    background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px bottom no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input:active, .login-block input:focus {
+    border: 1px solid #ff656c;
+}
+
+.login-block button {
+    width: 100%;
+    height: 40px;
+    background: #ff656c;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #e15960;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Montserrat;
+    outline: none;
+    cursor: pointer;
+}
+
+.login-block button:hover {
+    background: #ff7b81;
+}
+    </style>
+
+  </head>
+  <body>
+
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="">Movie Addict</a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%if(!loggedin){%>
+            <a class="nav-link" href="http://localhost:8080/users/login">Login <span class="sr-only">(current)</span></a>
+            <%}%>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Discover</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="http://localhost:8080/explore/upcoming">Upcoming Movies</a>
+              <a class="dropdown-item" href="http://localhost:8080/explore/popular">Popular Movies</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" style="margin-right:10px;" id="search-div">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search_term" id="searchbox">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <!-- Form Below to be shown only if logged in -->
+        <!-- <%if(!loggedin){%>
+        <form class="form-inline my-2 my-lg-0" id="login" method="POST">
+          <input class="form-control mr-sm-2" type="text" placeholder="User Name" name="username">
+          <input class="form-control mr-sm-2" type="text" placeholder="Password" name="password">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log In</button>
+        </form>
+        <%}%> -->
+      </div>
+    </nav>
+
+<div class="logo">
+</div>
+<% if(errors){%>
+    <div class="container" style="margin-left:40%;">
+        <div class="row">
+            <div class="col-md-3">
+                <% for(i=0;i<errors.length;i++){%>
+                    <div class="alert alert-danger" role="alert">
+                      <strong><%= errors[i].param%>:<%= errors[i].msg%></strong>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+<%}%>
+<% if(error_msg!=''){%>
+    <div class="container" style="margin-left:40%;">
+        <div class="row">
+            <div class="col-md-3">
+                    <div class="alert alert-danger" role="alert">
+                      <strong><%= error_msg%></strong>
+                    </div>
+            </div>
+        </div>
+    </div>
+<%}%>
+<div class="login-block">
+    <h1>Sign Up</h1>
+    <form method="POST">
+    <input type="text" placeholder="Full Name" name="name">
+    <input type="text" value="" placeholder="Username" id="username" name="username"/>
+    <input type="email" placeholder="Email Address" name="email">
+    <input type="password" value="" placeholder="Password" id="password" name="password1" />
+    <input type="password" value="" placeholder="Confirm Password" id="password" name="password2" />
+    <input type="text" value="" placeholder="Lucknow" id="city" name="city" />
+    <input type="text" value="" placeholder="India" id="country" name="country" />
+    <input type="date" value="" placeholder="Date of Birth" name="dob">
+    <button type="submit">Sign Up</button>
+    </form>
+</div>
+     <footer>
+        <p>&copy; Company 2017</p>
+     </footer>
+    </div> <!-- /container -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  </body>
+</html>

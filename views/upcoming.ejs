@@ -1,0 +1,36 @@
+<%include templates/header.ejs%>
+<h1 style="margin-top: 70px;margin-bottom: 20px;position: relative;text-align: center;text-shadow: 2px 2px 8px #b3b3b3">Upcoming</h1>
+<div class="container" style="margin-top: 4%;">
+<%for(block=0;block<(data.length/3);block++){%>
+	<div class="row" style="margin: auto 30px;margin-top: 30px;">
+		<div class="card-deck">
+		<%for(i=0;i<3&&(i+(block*3)<data.length);i++){%>
+		  <div class="card" style="width: 20rem;">
+		    <img class="card-img-top" src="http://image.tmdb.org/t/p/w342/<%=data[i+(block*3)].poster_path%>" alt="Card image cap" style="height: 20rem;">
+		    <div class="card-block">
+		      <h4 class="card-title"><%=data[i+(block*3)].title%><span style="margin-left: 10px;" class="badge badge-success"><%=data[i+(block*3)].vote_average%></span></h4>
+		      <p class="card-text" style="text-align: justify;"><%=data[i+(block*3)].overview%></p>
+		    </div>
+		    <div class="card-footer">
+		      <a href="/explore/movies/<%=data[i+(block*3)].id%>" class="btn btn-primary">More Info</a>
+		    </div>
+		  </div>
+  		<%}%>
+		</div>
+	</div>
+	<%}%>
+</div>
+
+<div class="container" style="position: relative;margin: 20px;">
+	<div class="row">
+		<nav aria-label="Page navigation example" style="margin: 0 auto;">
+		  <ul class="pagination">
+		    <%for(i=0;i<total_pages;i++){%>
+		    <li class="page-item"><a class="page-link" href="http://localhost:8080/explore/upcoming/<%=i+1%>"><%=i+1%></a></li>
+		    <%}%>
+		  </ul>
+		</nav>
+	</div>
+</div>
+
+<%include templates/footer.ejs%>

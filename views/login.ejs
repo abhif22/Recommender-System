@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+        <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300">
+
+    <title>Movie Addict!</title>
+    <style type="text/css">
+    	body {
+    background: url('../images/c1.jpg') no-repeat fixed center center;
+    background-size: cover;
+    font-family: Montserrat;
+}
+
+.logo {
+    width: 213px;
+    height: 36px;
+    /*background: url('http://i.imgur.com/fd8Lcso.png') no-repeat;*/
+    margin: 30px auto;
+}
+
+.login-block {
+    width: 320px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    border-top: 5px solid #ff656c;
+    margin: 0 auto;
+}
+
+.login-block h1 {
+    text-align: center;
+    color: #000;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.login-block input {
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: Montserrat;
+    padding: 0 20px 0 50px;
+    outline: none;
+}
+
+.login-block input#username {
+    background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px top no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input#username:focus {
+    background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px bottom no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input#password {
+    background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px top no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input#password:focus {
+    background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px bottom no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input:active, .login-block input:focus {
+    border: 1px solid #ff656c;
+}
+
+.login-block button {
+    width: 100%;
+    height: 40px;
+    background: #ff656c;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #e15960;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Montserrat;
+    outline: none;
+    cursor: pointer;
+}
+
+.login-block button:hover {
+    background: #ff7b81;
+}
+    </style>
+
+  </head>
+  <body>
+   <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="">Movie Addict</a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%if(!loggedin){%>
+            <a class="nav-link" href="http://localhost:8080/users/register">Sign Up <span class="sr-only">(current)</span></a>
+            <%}%>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Discover</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="http://localhost:8080/explore/upcoming">Upcoming Movies</a>
+              <a class="dropdown-item" href="http://localhost:8080/explore/popular">Popular Movies</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" style="margin-right:10px;" id="search-div">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search_term" id="searchbox">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <!-- Form Below to be shown only if logged in -->
+        <!-- <%if(!loggedin){%>
+        <form class="form-inline my-2 my-lg-0" id="login" method="POST">
+          <input class="form-control mr-sm-2" type="text" placeholder="User Name" name="username">
+          <input class="form-control mr-sm-2" type="text" placeholder="Password" name="password">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log In</button>
+        </form>
+        <%}%> -->
+      </div>
+    </nav>
+<div class="logo"></div>
+<div class="login-block">
+<% if(success_msg!=''){%>
+	<div class="alert alert-success" role="alert">
+	  <strong><%= success_msg%></strong>
+	</div>
+<%}%>
+<% if(error_msg!=''){%>
+	<div class="alert alert-success" role="alert">
+	  <strong><%= error_msg%></strong>
+	</div>
+<%}%>
+<% if(error!=''){%>
+	<div class="alert alert-success" role="alert">
+	  <strong><%= error%></strong>
+	</div>
+<%}%>
+  <form method="POST">
+    <h1>Login</h1>
+    <input type="text" value="" placeholder="Username" id="username" name="username" />
+    <input type="password" value="" placeholder="Password" id="password" name="password" />
+    <button type="submit" style="margin-bottom: 25px;">Submit</button>
+    <a href="/auth/facebook" style="margin-top: 40px;"><button type="button">Facebook Login</button></a>
+  </form>
+</div>
+	 <footer>
+        <p>&copy; Movie Addict 2017</p>
+     </footer>
+    </div> <!-- /container -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('nav').after('<div id="search-results"><ul id="results_ul"></ul></div>');
+        $('#searchbox').on('keyup', function(){
+          var search_term = $(this).val()
+          if(search_term.length>3){
+            $.ajax({
+                'url':'/search/',
+                'method': 'POST',
+                'data': JSON.stringify({
+                    'search_term': search_term
+                }),
+                contentType: "application/json",
+              }).done(function(data, status, xhrReq){
+                  $('#search-results').css({'height': 350})
+                  console.log(data.hits.hits)                   
+                  data = data.hits.hits
+                  $('#results_ul').empty()
+                  for(i=0;i<data.length;i++){
+                    if(data[i]._source.poster_path)
+                    $('#results_ul').append('<a href="http://localhost:8080/explore/movies/'+data[i]._source.id+'"><li class="search_result_listitem"><img src="http://image.tmdb.org/t/p/w92/'+data[i]._source.poster_path+'">'+data[i]._source.title+'<span class="badge badge-success">'+data[i]._type+'</span></li></a>');
+                  }
+
+              }).fail(function(xhrReq, status, err){
+
+              });
+          }
+          else if(search_term.length==0){
+            $('#search-results').css({'height': 0})
+          }
+        });
+      })
+    </script>
+  </body>
+</html>

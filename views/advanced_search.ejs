@@ -1,0 +1,60 @@
+<%include templates/header.ejs%>
+<div class="container" style="position: absolute;top: 100px;">
+	<div class="row">
+		<div class="col-md-3" id="search_div" style="border-right: 2px solid black">
+		<h4 style="margin-bottom: 60px;">Filter Search Results</h4>
+			<div class="row" style="margin-bottom: 40px;">
+				<div class="col-md-8" style="margin: 0px auto;">
+				<h5 style="font-weight: bold;">Genres</h5>
+					<span style="margin-right: 10px;">Action</span><input data-genre="Action" type="checkbox"><br>
+					<span style="margin-right: 10px;">Comedy</span><input data-genre="Comedy" type="checkbox"><br>
+					<span style="margin-right: 10px;">Drama</span><input data-genre="Drama" type="checkbox"><br>
+					<span style="margin-right: 10px;">Sci-Fi</span><input data-genre="Sci-Fi" type="checkbox"><br>
+					<span style="margin-right: 10px;">Thriller</span><input data-genre="Thriller" type="checkbox"><br>
+					<span style="margin-right: 10px;">Romance</span><input data-genre="Romance" type="checkbox"><br>
+					<span style="margin-right: 10px;">Horror</span><input data-genre="Horror" type="checkbox"><br>
+					<span style="margin-right: 10px;">Suspense</span><input data-genre="Suspense" type="checkbox"><br>
+				</div>
+			</div>
+			<div class="row" style="margin-bottom: 40px;">
+				<div class="col-md-8" style="margin: 0px auto;">
+				<h5 style="font-weight: bold;">Release Year</h5>
+					<select id="year" name="year" class="pretty">
+					  <option value="position" selected>2016</option>
+					  <option value="name" title="Sort by Name">2015</option>
+					  <option value="price_desc" title="Sort by Highest Price First">2014</option>
+					  <option value="price" title="Sort by Lowest Price First">2013</option>
+					  <option value="date" title="Sort by Newest First">2012</option>
+					  <option value="date" title="Sort by Newest First">2011</option>
+					  <option value="date" title="Sort by Newest First">2010</option>
+					  <option value="date" title="Sort by Newest First">2009</option>
+					  <option value="date" title="Sort by Newest First">2008</option>
+					  <option value="date" title="Sort by Newest First">2007</option>
+					  <option value="date" title="Sort by Newest First">2006</option>
+					  <option value="date" title="Sort by Newest First">2005</option>
+					  <option value="date" title="Sort by Newest First">2004</option>
+					  <option value="date" title="Sort by Newest First">2003</option>
+					  <option value="date" title="Sort by Newest First">2002</option>
+					  <option value="date" title="Sort by Newest First">2001</option>
+					  <option value="date" title="Sort by Newest First">2000</option>
+					  <option value="date" title="Sort by Newest First">1999</option>
+					</select>
+				</div>
+			</div>
+			<div class="row" style="margin-bottom: 20px;">
+				<div class="col-md-8" style="margin: 0px auto;">
+				<h5 style="font-weight: bold;">Sort by Rating</h5>
+					<select id="rating" name="rating" class="pretty-alt">
+					  <option value="1">★</option>
+					  <option value="2">★★</option>
+					  <option value="3">★★★</option>
+					  <option value="4">★★★★</option>
+					  <option value="5">★★★★★</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9" id="result_div"></div>
+	</div>
+</div>
+<%include templates/footer.ejs%>

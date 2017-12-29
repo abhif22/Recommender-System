@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+        <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/prettydropdowns.css">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css">
+    <title>Movie Addict!</title>
+
+  </head>
+  <body>
+   <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="">Movie Addict</a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%if(loggedin){%>
+            <a class="nav-link" href="http://localhost:8080/">Home <span class="sr-only">(current)</span></a>
+            <%}%>
+            <%if(!loggedin){%>
+            <a class="nav-link" href="http://localhost:8080/users/login">Login <span class="sr-only">(current)</span></a>
+            <%}%>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Discover</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="http://localhost:8080/explore/popular">Popular Movies</a>
+              <a class="dropdown-item" href="http://localhost:8080/explore/upcoming">Upcoming Movies</a>
+              <%if(loggedin){%>
+              <a class="dropdown-item" href="http://localhost:8080/recommendations">Recommendations</a>
+              <a class="dropdown-item" href="http://localhost:8080/recommendations/ranking">Ranking Recommendations</a>
+              <a class="dropdown-item" href="http://localhost:8080/your_watchlist">Your Watchlist</a>
+              <a class="dropdown-item" href="http://localhost:8080/users/logout">Logout</a>
+              <%}%>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" style="margin-right:10px;" id="search-div">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search_term" id="searchbox">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <!-- Form Below to be shown only if logged in -->
+        <!-- <%if(!loggedin){%>
+        <form class="form-inline my-2 my-lg-0" id="login" method="POST">
+          <input class="form-control mr-sm-2" type="text" placeholder="User Name" name="username">
+          <input class="form-control mr-sm-2" type="text" placeholder="Password" name="password">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log In</button>
+        </form>
+        <%}%> -->
+      </div>
+    </nav>

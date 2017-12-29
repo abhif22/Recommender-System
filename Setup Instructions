@@ -1,0 +1,43 @@
+1. remove this part from models/movie.js
+	,
+	crew: {
+			director:{
+				name: {
+					type: String,
+					es_indexed: true
+				}
+			},
+			producer:{
+				name: {
+					type: String
+				}
+			},
+			writer:{
+				name: {
+					type: String
+				}
+			},
+		}
+		//Note there is a comma above crew
+	Add this part back when data has been saved to mongodb.ie, after running Persist_Movies2.js
+Open a terminal in the project directory (where college.js lies)
+
+2. Run Persist_Movies2.js (Might Take time)
+	node Persist_Movies2.js
+3. Run Persist_Users2.js (Might Take time)
+	node Persist_Users2.js
+4. Ensure that data was persisted by opening a mongo shell by tyoing the following in terminal:
+	mongo shell
+	use movie-recommender
+	db.users.count() // should be around 6040
+	db.movies.count() // should be around 9125 
+5. Go to my_vir_env/flask1 -> open a terminal there and run:
+	source flask1/bin/activate
+    cd flask1/Project
+    python app.py
+
+6. type the following in terminal where you ran node scripts
+	node college.js
+
+	Done!
+If you face any problem feel free to contact :)   

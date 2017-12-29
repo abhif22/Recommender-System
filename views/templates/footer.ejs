@@ -1,0 +1,252 @@
+	 <footer>
+        <p>&copy; Movie Addict 2017</p>
+     </footer>
+    </div> <!-- /container -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.flipping_text.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/kottenator/jquery-circle-progress/1.2.1/dist/circle-progress.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.prettydropdowns.js"></script>
+    <script type="text/javascript">
+      $(window).on('load',function(){
+          $('input').iCheck({
+              checkboxClass: 'icheckbox_flat-red',
+              radioClass: 'iradio_flat-red'
+            });
+          $('input').on('ifChecked', function(e){
+            alert('Checked '+$(this).data('genre'))
+          })
+          $('input').on('ifUnchecked', function(e){
+            alert('UnChecked '+$(this).data('genre'))
+          })
+
+          //Pretty dropdown
+          $('.pretty').prettyDropdown();
+
+          $('.pretty-alt').prettyDropdown({
+              customClass: 'arrow triangle small',
+              height: 30
+            });
+
+        //LIVE SEARCH
+        
+        /*$('#searchbox').on('click',function(e){
+          $('nav').after('<div id="search-results"><ul><li class="search_result_listitem"><img src="http://image.tmdb.org/t/p/w92/dCtFvscYcXQKTNvyyaQr2g2UacJ.jpg">RUSH</li><li class="search_result_listitem"><img src="http://image.tmdb.org/t/p/w92/dCtFvscYcXQKTNvyyaQr2g2UacJ.jpg">HARRY POTTER AND THE GOBLET OF FIRE</li><li class="search_result_listitem"><img src="http://image.tmdb.org/t/p/w92/dCtFvscYcXQKTNvyyaQr2g2UacJ.jpg">AVENGERS</li><li class="search_result_listitem"><img src="http://image.tmdb.org/t/p/w92/dCtFvscYcXQKTNvyyaQr2g2UacJ.jpg">CAPTAIN AMERICA</li></ul></div>');
+        })*/
+        $('nav').after('<div id="search-results"><ul id="results_ul"></ul></div>');
+        $('#searchbox').on('keyup', function(){
+          var search_term = $(this).val()
+          if(search_term.length>3){
+            $.ajax({
+                'url':'/search/',
+                'method': 'POST',
+                'data': JSON.stringify({
+                    'search_term': search_term
+                }),
+                contentType: "application/json",
+              }).done(function(data, status, xhrReq){
+                  $('#search-results').css({'height': 350})
+                  console.log(data.hits.hits)                   
+                  data = data.hits.hits
+                  $('#results_ul').empty()
+                  for(i=0;i<data.length;i++){
+                    if(data[i]._source.poster_path)
+                    $('#results_ul').append('<a href="http://localhost:8080/explore/movies/'+data[i]._source.id+'"><li class="search_result_listitem"><img src="http://image.tmdb.org/t/p/w92/'+data[i]._source.poster_path+'">'+data[i]._source.title+'<span class="badge badge-success">'+data[i]._type+'</span></li></a>');
+                  }
+
+              }).fail(function(xhrReq, status, err){
+
+              });
+          }
+          else if(search_term.length==0){
+            $('#search-results').css({'height': 0})
+          }
+        });
+
+        //Owl Carousel
+        $('.owl-carousel').owlCarousel({
+              loop:true,
+              margin:10,
+              nav:true,
+              responsive:{
+                  0:{
+                      items:1
+                  },
+                  600:{
+                      items:3
+                  },
+                  1000:{
+                      items:5
+                  }
+              }
+          })
+
+        //Circular Progress Animation
+          $('.second.circle').circleProgress({
+            value: $('#score').data('score'),
+            size: 50,
+            startAngle:-Math.PI/2,
+            thickness: 5,
+            lineCap: 'round',
+            fill: {color: '#ffa500'}
+          }).on('circle-animation-progress', function(event, progress, stepVal) {
+            $(this).find('strong').html(Math.round(100 * stepVal) + '<i>%</i>');
+          });
+
+        $('.carousel').carousel({
+          interval: 3200
+        });
+        $('#myTab a').click(function (e) {
+          e.preventDefault()
+          $(this).tab('show')
+        })
+        $(".hero__title").flipping_text({
+            tickerTime: 3, // Define a time between each ticket in milliseconds. The default value is 10.
+            customRandomChar: false, // You can use your own random strings by defining them here. The default value is false which will use my random string: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+            tickerCount: 20, // Set the number of characters randomly shown before the real text is shown here. The default value is 10.
+            opacityEffect: true, // You can toggle the opacity effect here. Set this to false if you don't want the random text to fade in. The default value is 10.
+            resetOnChange: false // Toggle this to true if you want the plugin to stop and fill in all the text immediately when the user changes browser's tab. The default value is false.
+        });
+        /*$('#movie-likes').animationCounter({
+          start: 0,
+          end: 150,
+          step: 1,
+          delay: 20
+        });*/
+        var movieId = $('#title').data('movie-id');
+        console.log('MovieId '+movieId)
+
+         var flag = false;
+         console.log($('#myicon').data('wasfav'))
+        if($('#myicon').data('wasfav')=='1'){
+          $('#myicon').css('color','red');// Remove this after adding url
+            flag = true;
+        }
+
+        //Do This only if User is Logged In
+        $('#myicon').on('click', function(e){
+          console.log('Event Occurred')
+
+          //Make AJAX request to mark this movie as favorite for this user
+            $.ajax({
+              'url':'/users/favorite',
+              'method': 'POST',
+              'data': JSON.stringify({'wasFavorite':flag,
+                'movieId': movieId 
+              }),
+              contentType: "application/json",
+            }).done(function(data, status, xhrReq){
+              console.log('Successfully Posted! '+data)
+                if(flag){
+                  $('#myicon').css('color','white');
+                   $('#snackbar').html('Removed from Watchlist')
+                  flag = false
+                }
+                else{
+                  $('#myicon').css('color','red');
+                   $('#snackbar').html('Added to Watchlist')
+                  flag = true
+                }
+                mySnackBarFunction()
+            }).fail(function(xhrReq, status, err){
+
+            });
+
+        });
+
+        $('.fav_icon').on('click', function(e){
+          console.log('Event Occurred')
+
+          //Make AJAX request to mark this movie as favorite for this user
+            $.ajax({
+              'url':'/your_watchlist/delete/',
+              'method': 'POST',
+              'data': JSON.stringify({
+                'movieId': $(this).data('movie_id') 
+              }),
+              contentType: "application/json",
+            }).done(function(data, status, xhrReq){
+              console.log('Successfully Posted! '+data)
+                console.log(data)
+
+                    $('#'+data.movieId).remove()
+            }).fail(function(xhrReq, status, err){
+
+            });
+
+        });
+
+
+        function mySnackBarFunction() {
+            // Get the snackbar DIV
+            var x = document.getElementById("snackbar")
+
+            // Add the "show" class to DIV
+            x.className = "show";
+
+            // After 3 seconds, remove the show class from DIV
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        var my_prev_rating = $('#mystaricon').data('myrating');
+        console.log('Rating is '+my_prev_rating);
+        //Do This only if User is Logged In
+        $('#mystaricon').on('click', function(e){
+          console.log('Star Event Occurred')
+          if($('.col-md-9').has('#rateYo')['length']!=0){
+              console.log('RateYo Present')
+              console.log($('.col-md-9').has('#rateYo')['length']);
+              $('#rateYo').remove();
+          }
+          else{
+            console.log('RateYo Not Present')
+            console.log($('.col-md-9').has('#rateYo')['length']);
+          $('#mystaricon').after('<div id="rateYo" style="width:10%;height:20px;margin-left:40%;position:relative;z-index:1000;"></div>');
+           }
+           var wasRated = $('#mystaricon').data('wasRated')==1?true:false
+           $("#rateYo").rateYo({
+          'rating'    : my_prev_rating,
+          'readOnly': wasRated,
+          'spacing'   : "5px",
+          'multiColor': {
+       
+            "startColor": "#f71133", //RED
+            "endColor"  : "#a5f407"  //GREEN
+          },
+          'halfStar': true,
+          onChange: function (rating, rateYoInstance) {
+                         console.log(rating); 
+          },
+          onSet: function (rating, rateYoInstance) {
+                      console.log("Rating is set to: " + rating);
+                      my_prev_rating = rating;
+                      $('#snackbar').html('Successfully Rated')
+                      //Send AJAX Request
+                      $.ajax({
+                        'url':'http://localhost:8080/explore/movies/'+movieId+'/rate',
+                        'method': 'POST',
+                        'data': {'rating': rating,
+                          'movieId': movieId 
+                        }
+                      }).done(function(data, status, xhrReq){
+                        mySnackBarFunction()
+                      }).fail(function(xhrReq, status, err){
+                          
+                      });
+          }
+        });
+        });      
+      });
+    </script>
+  </body>
+</html>

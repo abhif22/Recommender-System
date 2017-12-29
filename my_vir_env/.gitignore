@@ -1,0 +1,10 @@
+*.json
+!package.json
+Notes.txt
+my_vir_env/flask1/Project/*.json
+my_vir_env/flask1/Project/ml-latest-small-for-practice/
+my_vir_env/flask1/Project/*.csv
+*.csv
+TMDB-Requests.txt
+
+

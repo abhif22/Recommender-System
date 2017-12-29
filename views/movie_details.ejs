@@ -1,0 +1,147 @@
+<%include templates/header.ejs%>
+
+    <!-- PRIMARY DETAILS -->
+
+  <div class="hero">
+  <img class="hero__background" src="http://image.tmdb.org/t/p/original/<%=movie_details.movie.poster_path%>">
+  <div class="hero__content" style="margin-top: 80px;">
+  <div class="container" style="position: absolute;box-sizing: border-box;">
+    <div class="row">
+      <div class="col-md-3">
+        <img src="http://image.tmdb.org/t/p/w500/<%=movie_details.movie.poster_path%>" id="movie-poster">
+      </div>
+      <div class="col-md-9">
+        <h1 class="hero__title" id="title" data-movie-id="<%=movie_details.movie.id%>" style="position: relative;left: -20%;top:-10%;"><%=movie_details.movie.original_title%></h1>
+         <span style="font-size: .3em;font-weight:bolder;position: absolute;left: 25%;top:32%;" data-score="<%=movie_details.movie.popularity/10%>" id="score">User<br>Score</span>
+        <div class="second circle" style="position: absolute;left: 15%;">
+          <strong style="font-size: .3em;position: absolute;top:6px;"></strong>
+        </div>
+        <span id="myicon" data-toggle="tooltip" data-placement="bottom" data-wasFav="<%= movie_details.wasFav%>" title="Click to Mark as Favorite" style="">&hearts;</span>
+        <span id="mystaricon" data-toggle="tooltip" data-placement="bottom" title="Click to Rate this Movie" data-myrating="<%=movie_details.rating%>" data-wasRated="<%=movie_details.wasRated%>" style="font-size:100%;color:white">&star;</span>
+        <div id="snackbar"></div>
+        <div class="col-md-12">
+        <h3 style=";margin-left: 50px;text-align: left;position: relative;left: 5%;top:-10%;">Overview:</h3>
+        <p class="movie-overview" style="position: relative;left: 5%;top:-10%;"><%=movie_details.movie.overview%></p>
+        <h3 style="margin-top: 50px;margin-left: 50px;text-align: left;position: relative;left: 5%;top:-10%;">Featured Crew:</h3>
+        <div id="crew">
+        <a class="crew" href=""><span class="badge badge-pill badge-default"><%=movie_details.crew.director%> (Director)</span></a>
+        <a class="crew" href=""><span class="badge badge-pill badge-default"><%=movie_details.crew.producer%> 
+ (Producer)</span></a>
+        <a class="crew" href=""><span class="badge badge-pill badge-default"><%=movie_details.crew.writer%> (Writer)</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+    </div>
+  </div>
+ 
+
+  <!-- SECONDARY DETAILS -->
+
+  <div class="container" id="secondary-details">
+    <div class="row">
+      <div class="col-md-8">
+      <div class="row">
+        </div>
+              <div class="row">
+          <h2  style="margin: 10px auto;"><span class="badge badge-default">Top Billed Cast</span></h2>
+          <div class="col-md-12" style="position: relative;margin-left: 1.5%;margin-top: 0px;">
+            <div class="owl-carousel owl-theme" style="margin: auto;">
+              
+            <%for(i=0;i<movie_details.cast.length;i++){%>
+              <div class="item">
+                <div class="card">
+                  <img class="card-img-top" src="http://image.tmdb.org/t/p/w154/<%=movie_details.cast[i].profile_path%>" style="border: none; max-width: 100%;
+        max-height: 100%;;" alt="Card image cap">
+                  <div class="card-block">
+                    <a href=""><p class="card-text"><%=movie_details.cast[i].name%> as <%=movie_details.cast[i].character%></p></a>
+                  </div>
+                </div>
+              </div>
+              <%}%>
+            </div>
+          </div>
+      </div>
+      </div>
+      <div class="col-md-4">
+        <div class="jumbotron">
+          <div class="col-md-12" style="height: 100%;">
+            <h2 style="margin-top: 5px;text-align: center;">Facts</h2>
+            <hr>
+            <h4>Status</h4>
+            <div class="col-md-8">
+              <span class="badge badge-default" style="margin:5px;"><%=movie_details.movie.status%></span>
+              <span class="badge badge-default" style="margin:5px;"><%=movie_details.movie.release_date%></span>
+            </div>
+            <hr>
+            <h4>Average Vote</h4>
+            <div class="col-md-8">
+              <span class="badge badge-default" style="margin:5px;"><%=movie_details.movie.vote_average%></span>
+            </div>
+            <hr>
+            <h4>Vote Count</h4>
+            <div class="col-md-8">
+              <span class="badge badge-default" style="margin:5px;"><%=movie_details.movie.vote_count%></span>
+            </div>
+            <hr>
+            <h4>Genres</h4>
+            <div class="col-md-8">
+              <%for(i=0;i<movie_details.movie.genres.length;i++){%>
+              <a href=""><span class="badge badge-default" style="margin:5px;"><%=movie_details.movie.genres[i].name%></span></a>
+              <%}%>
+            </div>
+            <hr>
+            <h4>Budget</h4>
+            <div class="col-md-8">
+              <span class="badge badge-default" style="margin:5px;"><%=movie_details.movie.budget%></span>
+            </div>
+            <hr>
+            <h4>Runtime</h4>
+            <div class="col-md-8">
+              <span class="badge badge-default" style="margin:5px;"><%=movie_details.movie.runtime%></span>
+            </div>
+            <hr>
+            <h4>Revenue</h4>
+            <div class="col-md-8">
+              <span class="badge badge-default" style="margin:5px;">$<%=movie_details.movie.revenue%></span>
+            </div>
+            <hr>
+            <h4>Homepage</h4>
+            <div class="col-md-8">
+              <a href="<%=movie_details.movie.homepage%>"><span class="badge badge-default" style="margin:5px;"><%=movie_details.movie.homepage%></span></a>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div>
+    </div> 
+  </div>
+
+
+  <!-- SIMILAR MOVIES -->
+
+  <div class="container" style="position: relative;margin-top: 1100px;">
+    <div class="row">
+      <h2  style="margin: auto;"><span class="badge badge-default">Similar Movies</span></h2>
+      <div class="col-md-12" style="position: relative;margin-left: 0%;margin-top: 30px;">
+        <div class="owl-carousel owl-theme">
+        <%for(i=0;i<movie_details.similarmovies.length;i++){%>
+          <div class="item">
+            <div class="card">
+              <img class="card-img-top" src="http://image.tmdb.org/t/p/w154/<%=movie_details.similarmovies[i].poster_path%>" style="border: none; max-width: 100%;
+    max-height: 100%;" alt="Card image cap">
+              <div class="card-block">
+                <a href="http://localhost:8080/explore/movies/<%=movie_details.similarmovies[i].id%>"><p class="card-text"><%=movie_details.similarmovies[i].title%></p></a>
+              </div>
+            </div>
+          </div>
+          <%}%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%include templates/footer.ejs%>

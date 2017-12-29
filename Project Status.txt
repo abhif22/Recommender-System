@@ -1,0 +1,28 @@
+	TASK				STATUS
+
+Movies Persisted 		DONE
+Review Persisted		DONE
+Users Persisted			DONE
+Facebook Login			DONE
+Local Login				DONE
+Upcoming Movies			DONE
+Movie Details			DONE
+Favourite				DONE
+Watchlist				DONE
+LIVE SEARCH				DONE
+Recommendations			DONE
+Recent Views			DONE
+FB SHARE/LIKE			DONE
+Show Movies By particular Director	DONE	
+Show Movies of a particular Actor/Actress	DONE
+Show Actor/Actress Details DONE
+
+
+USE recommend_from_interactions to get recommendations for new user
+Since the movies rated by user are already being added to ratings.csv add them to user schema under rated.
+Whenever User logs in check to see the growth of data  (like if no of ids % 5 =0, then start recommending)
+
+
+
+
+
